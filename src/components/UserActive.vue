@@ -1,24 +1,31 @@
 <template>
   <div class="display-user">
-
-    <h1>Composant affichage des données utilisateurs</h1>
-    <p v-for="user in users" :name="user.name" :age="user.age"></p>
+    <h3>Composant affichage des données utilisateurs</h3>
+    <p>{{ name }}</p>
+    <p>{{ age }}</p>
   </div>
-  <UserData @add-user="DisplayUser" />
 </template>
 
 <script setup lang='js'>
-import { computed, watch, onMounted, onUpdated, onBeforeUnmount, ref } from 'vue'
-import UserData from './UserData.vue';
 
-
-const users = ref([{ name: "John", age: 25 }]);
-
-const DisplayUser = () => {
-  users.value.push({ name: name.value, age: age.value });
-  console.log(users);
-}
-
+const props = defineProps({
+  name: {
+    type: String,
+    required: true,
+  },
+  age: {
+    type: Number,
+    required: true,
+  },
+})
 
 </script>
-<style scoped lang="css"></style>
+<style scoped lang="css">
+.display-user {
+  width: 300px;
+  background-color: blue;
+  border-radius: 25px;
+  padding: 15px;
+  margin: 15px;
+}
+</style>
